@@ -1,1 +1,1 @@
-Мои домашние работы в рамках курсах Front-end-Pro
+"My homework assignments for the Front-end-Pro courses."
