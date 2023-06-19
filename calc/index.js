@@ -1,9 +1,7 @@
 const action = getAction();
 const operandA = getOperand('A');
 const operandB = getOperand('B');
-
 const res = calc(action, operandA, operandB);
-
 showResult(action, operandA, operandB, res);
 
 function isValid (operand) {
@@ -40,7 +38,6 @@ function calc(action, a, b) {
 
 function showResult(action, a, b, result) {
     if (!isValid(result)) {
-
         alert(`${a} ${action} ${b} = ${result}`);
     } else {
         alert("wrong operand");
