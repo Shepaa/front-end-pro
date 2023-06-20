@@ -2,13 +2,15 @@ const admissibleActions = ['+', '-', '*', '/']
 const action = getAction();
 const operandA = getOperand('A');
 const operandB = getOperand('B');
+const res = calc(action, operandA, operandB);
 if (!isValidAction(action)) {
     alert("wrong action");
 } else if (isOperandValid(operandA) || isOperandValid(operandB)) {
     alert("wrong operand");
+} else {
+    showResult(action, operandA, operandB, res);
 }
-const res = calc(action, operandA, operandB);
-showResult(action, operandA, operandB, res);
+
 
 function isValidAction(action) {
     return admissibleActions.includes(action)
