@@ -43,10 +43,11 @@ function calc(action, a, b) {
 }
 
 function showResult(action, a, b, result) {
-    if (!isNaN(result, a , b)) {
-        alert(`${a} ${action} ${b} = ${result}`);
-    }else if (isNaN(a,b)) {
-        alert("wrong operand")
-    }
+    // if (!isNaN(result, a , b)) {
+    //     alert(`${a} ${action} ${b} = ${result}`);
+    // }else if (isNaN(a,b)) {
+    //     alert("wrong operand")
+    // }
+    alert(`${a} ${action} ${b} = ${result}`);
 }
 
