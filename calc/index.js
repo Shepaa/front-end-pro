@@ -22,40 +22,33 @@ function getAction() {
     return prompt('Enter action +, -, *, / ');
 }
 
+if (!isValidAction(action)) {
+    alert("wrong action");
+} else if (isOperandValid(operandA) || isOperandValid(operandB)) {
+    alert("wrong operand");
+}
 function calc(action, a, b) {
     let res;
 
-    if (!isValidAction(action)) {
-        alert("wrong action");
-    } else if (isOperandValid(operandA) || isOperandValid(operandB)) {
-        alert("wrong operand");
-    } else {
-        switch (action) {
-            case "+":
-                res = a + b;
-                break
-            case "-":
-                res = a - b;
-                break;
-            case "*":
-                res = a * b;
-                break;
-            case "/" :
-                res = a / b;
-                break;
-        }
+    switch (action) {
+        case "+":
+            res = a + b;
+            break
+        case "-":
+            res = a - b;
+            break;
+        case "*":
+            res = a * b;
+            break;
+        case "/" :
+            res = a / b;
+            break;
     }
     return res;
 }
 
 function showResult(action, a, b, result) {
-    // if (!isNaN(result, a , b)) {
-    //     alert(`${a} ${action} ${b} = ${result}`);
-    // }else if (isNaN(a,b)) {
-    //     alert("wrong operand")
-    // }
-    if (!isNaN(result)) {
         alert(result);
-    }
+
 }
 
