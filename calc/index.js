@@ -4,17 +4,23 @@ const operandB = getOperand('B');
 const res = calc(action, operandA, operandB);
 showResult(action, operandA, operandB, res);
 
-function isValid (operand) {
+function isValid(operand) {
     return isNaN(operand);
 }
 
 function getOperand(operandName) {
-    return Number(prompt(`Enter operand ${operandName}`));
+    let userOperand = Number(prompt(`Enter operand ${operandName}`));
+    if (!isValid(userOperand)) {
+        return userOperand
+    } else if (isValid(operandName)) {
+        return Number(prompt("uncorrected value, try again"))
+    }
 }
 
 function getAction() {
     return prompt('Enter action +, -, *, / ');
 }
+
 function calc(action, a, b) {
     let res;
     switch (action) {
@@ -30,17 +36,17 @@ function calc(action, a, b) {
         case "/" :
             res = a / b;
             break;
-        default :
-            alert("Wrong action");
+        // default :
+        //     alert("Wrong action");
     }
     return res;
 }
 
 function showResult(action, a, b, result) {
-    if (!isValid(result)) {
+    if (!isNaN(result)) {
         alert(`${a} ${action} ${b} = ${result}`);
-    } else {
-        alert("wrong operand");
+    }else {
+        alert("Oops, something wrong")
     }
 }
 
