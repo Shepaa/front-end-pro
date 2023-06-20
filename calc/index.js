@@ -2,6 +2,11 @@ const admissibleActions = ['+', '-', '*', '/']
 const action = getAction();
 const operandA = getOperand('A');
 const operandB = getOperand('B');
+if (!isValidAction(action)) {
+    alert("wrong action");
+} else if (isOperandValid(operandA) || isOperandValid(operandB)) {
+    alert("wrong operand");
+}
 const res = calc(action, operandA, operandB);
 showResult(action, operandA, operandB, res);
 
@@ -22,11 +27,7 @@ function getAction() {
     return prompt('Enter action +, -, *, / ');
 }
 
-if (!isValidAction(action)) {
-    alert("wrong action");
-} else if (isOperandValid(operandA) || isOperandValid(operandB)) {
-    alert("wrong operand");
-}
+
 function calc(action, a, b) {
     let res;
 
@@ -48,7 +49,7 @@ function calc(action, a, b) {
 }
 
 function showResult(action, a, b, result) {
-        alert(result);
+    alert(result);
 
 }
 
