@@ -1,20 +1,21 @@
+const admissibleActions = ['+', '-', '*', '/']
 const action = getAction();
 const operandA = getOperand('A');
 const operandB = getOperand('B');
 const res = calc(action, operandA, operandB);
 showResult(action, operandA, operandB, res);
 
-function isValid(operand) {
-    return isNaN(operand);
+function isValidAction(action) {
+    return admissibleActions.includes(action)
+}
+
+function isOperandValid(operand) {
+    return isNaN(operand)
 }
 
 function getOperand(operandName) {
-    let userOperand = Number(prompt(`Enter operand ${operandName}`));
-    if (!isValid(userOperand)) {
-        return userOperand
-    } else if (isValid(operandName)) {
-        return Number(prompt("uncorrected value, try again"))
-    }
+    return Number(prompt(`Enter operand ${operandName}`));
+
 }
 
 function getAction() {
@@ -23,21 +24,26 @@ function getAction() {
 
 function calc(action, a, b) {
     let res;
-    switch (action) {
-        case "+":
-            res = a + b;
-            break
-        case "-":
-            res = a - b;
-            break;
-        case "*":
-            res = a * b;
-            break;
-        case "/" :
-            res = a / b;
-            break;
-        default :
-            alert("Wrong action");
+
+    if (!isValidAction(action)) {
+        alert("wrong action");
+    } else if (isOperandValid(operandA) || isOperandValid(operandB)) {
+        alert("wrong operand");
+    } else {
+        switch (action) {
+            case "+":
+                res = a + b;
+                break
+            case "-":
+                res = a - b;
+                break;
+            case "*":
+                res = a * b;
+                break;
+            case "/" :
+                res = a / b;
+                break;
+        }
     }
     return res;
 }
@@ -48,6 +54,8 @@ function showResult(action, a, b, result) {
     // }else if (isNaN(a,b)) {
     //     alert("wrong operand")
     // }
-    alert(`${a} ${action} ${b} = ${result}`);
+    if (!isNaN(result)) {
+        alert(result);
+    }
 }
 
