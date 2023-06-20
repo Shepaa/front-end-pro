@@ -36,17 +36,17 @@ function calc(action, a, b) {
         case "/" :
             res = a / b;
             break;
-        // default :
-        //     alert("Wrong action");
+        default :
+            alert("Wrong action");
     }
     return res;
 }
 
 function showResult(action, a, b, result) {
-    if (!isNaN(result)) {
+    if (!isNaN(result, a , b)) {
         alert(`${a} ${action} ${b} = ${result}`);
-    }else {
-        alert("Oops, something wrong")
+    }else if (isNaN(a,b)) {
+        alert("wrong operand")
     }
 }
 
