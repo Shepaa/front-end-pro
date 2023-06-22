@@ -1,7 +1,10 @@
 console.log("числа від 10 до 20: ")
 let result = "";
 for (let i = 10; i <= 20; i++) {
-    result = result + ", " + i;
+    result += i;
+    if (i !== 20){
+        result = result + ","
+    }
 }
 console.log(result);
 
@@ -17,7 +20,7 @@ console.log(square);
 console.log("таблиця множення на 7: ")
 for (let i = 1; i <= 10; i++) {
     let result = 7 * i;
-    console.log(`7 * ${i} = ${result}`);
+    console.log(`7 * ${i} = ${result}`);}
 
 
     console.log("Сумма всех целых чисел от 1 до 15: ");
@@ -54,4 +57,18 @@ for (let i = 1; i <= 10; i++) {
         }
     }
     console.log("Сумма чётных чисел от 30 до 80: " + sumOfEvenDigits);
+
+
+
+
+let output = '';
+
+for (let i = 10; i <= 20; i++) {
+    output += i;
+
+    if (i !== 20) {
+        output += ', ';
+    }
 }
+
+console.log(output);
