@@ -8,11 +8,11 @@ console.log(result);
 
 
 console.log("квадрати чисел від 10 до 20: ")
-let multiply = "";
+let square = "";
 for (let m = 0; m <= 10; m++) {
-    multiply = multiply + ' ' + m * m;
+    square = square + ' ' + m * m;
 }
-console.log(multiply)
+console.log(square)
 
 
 
@@ -56,3 +56,14 @@ for (let i = 1; i <= 500; i++) {
 const average = sumAverage / count;
 
 console.log(average);
+
+
+let sumOfEvenDigits = 0;
+
+for (let i = 30; i <= 80; i++) {
+    if (i % 2 === 0) {
+        sumOfEvenDigits += i;
+    }
+}
+
+console.log("Сумма чётных чисел от 30 до 80: " + sumOfEvenDigits);
