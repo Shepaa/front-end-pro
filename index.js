@@ -1,7 +1,3 @@
-averageGroupMark(students);
-averageStudentMark(12, students);
-
-
 const students = [
     {
         id: 10,
@@ -24,9 +20,7 @@ const students = [
         marks: [10, 9, 8, 9]
     }
 ]
-
-//
-function averageStudentMark(id, students) {
+let averageStudentMark = function (id, students) {
     const student = students.find((student) => student.id === id);
     if (!student) {
         return null;
@@ -34,18 +28,15 @@ function averageStudentMark(id, students) {
     const marksSum = student.marks.reduce((acc, mark) => {
         return acc + mark;
     }, 0);
-    const averageMark = marksSum / student.marks.length;
-    console.log(averageMark);
+    return marksSum / student.marks.length;
 }
-
-
-
-
-function averageGroupMark(students) {
+let averageGroupMark = function (students) {
     const marks = [].concat(...students.map(student => student.marks));
     const res = marks.reduce((acc, mark) => acc + mark, 0);
-    console.log(res / marks.length);
+    return res / marks.length;
 }
+averageGroupMark(students);
+averageStudentMark(13, students)
 
 
 
