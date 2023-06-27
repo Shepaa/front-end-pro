@@ -19,8 +19,13 @@ const students = [
         name: 'Jean-Baptiste Emanuel Zorg',
         marks: [10, 9, 8, 9]
     }
-]
-let averageStudentMark = function (id, students) {
+];
+
+averageGroupMark(students);
+averageStudentMark(13, students)
+
+
+function averageStudentMark(id, students) {
     const student = students.find((student) => student.id === id);
     if (!student) {
         return null;
@@ -30,13 +35,12 @@ let averageStudentMark = function (id, students) {
     }, 0);
     return marksSum / student.marks.length;
 }
-let averageGroupMark = function (students) {
+
+function averageGroupMark(students) {
     const marks = [].concat(...students.map(student => student.marks));
     const res = marks.reduce((acc, mark) => acc + mark, 0);
     return res / marks.length;
 }
-averageGroupMark(students);
-averageStudentMark(13, students)
 
 
 
