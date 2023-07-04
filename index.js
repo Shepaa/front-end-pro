@@ -67,12 +67,13 @@ function checkScore(question, userAnswer) {
     }
 }
 
+
 function sumScore() {
     let scoreSum = 0;
     QUESTIONS.forEach(function (question) {
         scoreSum += question.score;
     })
-    return alert(scoreSum);
+    alert(scoreSum);
 }
 
 function getAnswer(question) {
