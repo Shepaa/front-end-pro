@@ -55,33 +55,38 @@ const QUESTIONS = [
         type: 'confirm',
     },
 ];
-QUESTIONS.forEach(question => checkScore(question, getAnswer(question)));
-sumScore();
+QUESTIONS.forEach(question => {
+    question.score = checkScore(question.answer, getAnswer(question.question, question.type));
+});
+alert(sumScore(QUESTIONS));
 
 
-function checkScore(question, userAnswer) {
-    if (question.answer === userAnswer) {
-        question.score = 10;
+function checkScore(answer, userAnswer) {
+    let score;
+    if (answer === userAnswer) {
+        score = 10;
     } else {
-        question.score = 0;
+        score = 0;
     }
+    return score;
 }
 
 
-function sumScore() {
+function sumScore(questions) {
     let scoreSum = 0;
-    QUESTIONS.forEach(function (question) {
+    questions.forEach(function (question) {
         scoreSum += question.score;
     })
-    alert(scoreSum);
+    return scoreSum;
 }
 
-function getAnswer(question) {
+
+function getAnswer(question, type) {
     let answer = null;
-    if (question.type === 'prompt') {
-        answer = prompt(question.question);
-    } else if (question.type === 'confirm') {
-        answer = confirm(question.question)
+    if (type === 'prompt') {
+        answer = prompt(question);
+    } else if (type === 'confirm') {
+        answer = confirm(question);
     }
     return answer;
 }
