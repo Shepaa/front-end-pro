@@ -9,8 +9,10 @@ console.log(counter.get()); // 100
 counter.reset()
 console.log(counter.get()); // 1000
 function createCounter(baseValue) {
-    let counts = baseValue;
-
+    let counts;
+    if (!isNaN(baseValue)) {
+        counts = baseValue
+    }
     return {
         inc: (incValue) => {
             (!isNaN(incValue)) ? counts += incValue : null;
@@ -22,7 +24,7 @@ function createCounter(baseValue) {
             (!isNaN(setValue)) ? counts = setValue : null;
         },
         reset: () => {
-            (!isNaN(baseValue)) ? counts = baseValue : null;
+            counts = baseValue;
         },
         get: () => counts
     };
