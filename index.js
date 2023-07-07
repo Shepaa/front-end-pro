@@ -63,11 +63,8 @@ alert(sumScore(QUESTIONS));
 
 function checkScore(answer, userAnswer) {
     let score;
-    if (answer === userAnswer) {
-        score = 10;
-    } else {
-        score = 0;
-    }
+    (answer === userAnswer) ? score = 10 : score = 0;
+
     return score;
 }
 
