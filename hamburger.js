@@ -4,7 +4,7 @@ hamburger.addTopping(Hamburger.TOPPING_POTATO)
 console.log('Price with sauce: ' + hamburger.getPrice());
 console.log('Calories with sauce: ' + hamburger.getCalories())
 
-function Hamburger(size) {
+function Hamburger(size){
     this.price = size.price;
     this.calories = size.calories;
 }
