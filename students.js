@@ -33,16 +33,12 @@ class Group {
     }
 
 
-    #getAverageMarksByStudent(student) {
-        return student.marks.reduce((acc, value) => acc + value, 0) / student.marks.length;
-    }
-
     getAverageMark() {
         return this.#getAverageMarksSum() / this.#students.length
     }
 
     #getAverageMarksSum() {
-        const averageMarks = [].concat(...this.students.map(student => this.#getAverageMarksByStudent(student)));
+        const averageMarks = [].concat(...this.students.map(student => student.marks.reduce((acc, value) => acc + value, 0) / student.marks.length));
         return averageMarks.reduce((acc, mark) => acc + mark, 0);
     }
 }
@@ -64,4 +60,3 @@ console.log(group.getAverageMark() === (9 + 9.5 + 8) / 3);
 
 group.students = [new Student('John', [10, 10, 5, 10])]; // Сделать group.students - readonly
 console.log(group.students.length === 3);
-
