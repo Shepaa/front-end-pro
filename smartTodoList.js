@@ -1,13 +1,11 @@
-const TODO_LIST_CLASS = 'todoList';
-const INPUT_EL_CLASS = 'msgInput';
-const SUBMIT_BTN_CLASS = 'msgButton';
+const TODO_LIST_ID = 'todoList';
+const INPUT_EL_ID = 'msgInput';
+const SUBMIT_BTN_ID = 'msgButton';
 const DELETE_BTN_CLASS = 'deleteButton';
 
-
-const todoList = document.querySelector(`#${TODO_LIST_CLASS}`);
-const inputEl = document.querySelector(`#${INPUT_EL_CLASS}`);
-const submitBtnEl = document.querySelector(`#${SUBMIT_BTN_CLASS}`);
-
+const todoList = document.querySelector(`#${TODO_LIST_ID}`);
+const inputEl = document.querySelector(`#${INPUT_EL_ID}`);
+const submitBtnEl = document.querySelector(`#${SUBMIT_BTN_ID}`);
 
 submitBtnEl.addEventListener(`click`, onBtnClick);
 todoList.addEventListener('click', onUlClick);
@@ -34,15 +32,12 @@ function showError(message) {
     alert(message)
 }
 
-
 function render() {
     const HTMLtemplate = `
     <li class="li">
-    <span class="inputValue">
-    ${inputEl.value}</span>
-    <button class="${DELETE_BTN_CLASS}">Delete</button>
-</li>
-    `
+        <span class="inputValue">${inputEl.value}</span>
+        <button class="${DELETE_BTN_CLASS}">Delete</button>
+    </li>`
     todoList.insertAdjacentHTML('beforeend', HTMLtemplate);
 }
 
