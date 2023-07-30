@@ -1,0 +1,26 @@
+body {
+    display: flex;
+    justify-content: center;
+
+}
+
+.accordion-item {
+    border: 2px solid darkred;
+    margin-bottom: 5px;
+    width: 200px;
+}
+
+.accordion-item-header {
+    background-color: #336598;
+    border-bottom: 2px solid darkgoldenrod;
+}
+
+.accordion-item-content {
+    height: 50px;
+    display: none;
+    background-color: #b9b940;
+}
+
+.open {
+    display: block;
+}
