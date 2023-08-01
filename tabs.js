@@ -1,4 +1,3 @@
-
 class Tab {
     static OPEN_CLASS = 'open';
     static NAVIGATION_EL_ACTIVE_CLASS = 'navigation-element_active';
@@ -11,8 +10,7 @@ class Tab {
         this.tabsItems = Array.from(this.rootEl.children);
         this.setClasses();
         this.setEvents();
-        this.rootEl.querySelector('.' + Tab.CONTENT_BLOCK_CLASS).classList.add(Tab.OPEN_CLASS)
-        this.tabsItems[0].firstElementChild.classList.add(Tab.NAVIGATION_EL_ACTIVE_CLASS);
+        this.startOpen()
     }
 
     setClasses() {
@@ -34,6 +32,11 @@ class Tab {
 
     setEvents() {
         this.rootEl.addEventListener(`click`, this.onRootElClick.bind(this));
+    }
+
+    startOpen() {
+        this.rootEl.querySelector('.' + Tab.CONTENT_BLOCK_CLASS).classList.add(Tab.OPEN_CLASS)
+        this.tabsItems[0].firstElementChild.classList.add(Tab.NAVIGATION_EL_ACTIVE_CLASS);
     }
 
     onRootElClick(e) {
