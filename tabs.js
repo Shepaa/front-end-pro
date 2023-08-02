@@ -1,89 +1,62 @@
+
 class Tab {
-    static OPEN_CLASS = 'open';
-    static NAVIGATION_EL_ACTIVE_CLASS = 'navigation-element_active';
-    static NAVIGATION_EL_CLASS = 'navigation-element';
-    static CONTENT_BLOCK_CLASS = 'content-block';
-    static CONTENT_CLASS = 'content';
+    static DEFAULT_TAB_INDEX = 0
+    static NAV_EL_CLASS = 'navigation-item';
+    static CONTENT_ITEM_CLASS = 'content-item';
+    static NAV_ITEM_CLASS = 'navigation-item-active';
+    static CONTENT_ITEM_ACTIVE = 'content-item-active'
 
     constructor(rootEl) {
         this.rootEl = rootEl;
-        this.tabsItems = Array.from(this.rootEl.children);
-        this.setClasses();
+        const [navItems, contentItems] = this.rootEl.children;
+        this.navItems = Array.from(navItems.children);
+        this.contentItems = Array.from(contentItems.children);
+
+        this.setStyles();
         this.setEvents();
-        this.startOpen()
+        this.setActive(Tab.DEFAULT_TAB_INDEX);
     }
 
-    setClasses() {
-        this.tabsItems.forEach((item) => {
-            const children = Array.from(item.children);
-            children.forEach((child) => {
-                if (this.isBtn(child)) {
-                    child.classList.add(Tab.NAVIGATION_EL_CLASS);
-                } else {
-                    child.classList.add(Tab.CONTENT_BLOCK_CLASS);
-                }
-            });
-        });
-    }
-
-    isBtn(el) {
-        return el.tagName === 'BUTTON'
+    setStyles() {
+        this.navItems.forEach((navItem) => {
+            navItem.classList.add(Tab.NAV_EL_CLASS);
+        })
+        this.contentItems.forEach((contentItem) => {
+            contentItem.classList.add(Tab.CONTENT_ITEM_CLASS);
+        })
     }
 
     setEvents() {
-        this.rootEl.addEventListener(`click`, this.onRootElClick.bind(this));
-    }
-
-    startOpen() {
-        this.rootEl.querySelector('.' + Tab.CONTENT_BLOCK_CLASS).classList.add(Tab.OPEN_CLASS)
-        this.tabsItems[0].firstElementChild.classList.add(Tab.NAVIGATION_EL_ACTIVE_CLASS);
+        this.rootEl.addEventListener('click', this.onRootElClick.bind(this))
     }
 
     onRootElClick(e) {
-        const btnIndex = this.getBtnIndex(e)
-        const contentEl = this.findContentEl(btnIndex);
-        const openedEl = this.findOpenedEl(btnIndex);
-        const activeEl = this.findActiveEl();
-        this.toggleEl(contentEl)
-        this.setActiveClass(activeEl, e)
-        this.openCloseEl(openedEl, contentEl);
-    }
+        const target = e.target
+        const navItem = this.findNavEl(target)
 
-    getBtnIndex(e) {
-        const parentElement = e.target.parentElement;
-        return Array.prototype.indexOf.call(parentElement.children, e.target);
-    }
-
-    findContentEl(index) {
-        return document.querySelector('.' + Tab.CONTENT_CLASS).querySelectorAll('.' + Tab.CONTENT_BLOCK_CLASS)[index];
-    }
-
-    findOpenedEl() {
-        return this.rootEl.querySelector('.' + Tab.OPEN_CLASS);
-    }
-
-    findActiveEl() {
-        return this.rootEl.querySelector('.' + Tab.NAVIGATION_EL_ACTIVE_CLASS);
-    }
-
-    toggleEl(contentEl) {
-        contentEl.classList.toggle(Tab.OPEN_CLASS);
-    }
-
-    setActiveClass(activeEl, e) {
-        if (activeEl && this.isBtn(e.target)) {
-            activeEl.classList.remove(Tab.NAVIGATION_EL_ACTIVE_CLASS);
-            e.target.classList.add(Tab.NAVIGATION_EL_ACTIVE_CLASS)
+        if (navItem) {
+            const navItemIndex = this.getNavElIndex(navItem)
+            this.removeActive(this.currentTabIndex)
+            this.setActive(navItemIndex)
         }
     }
 
-    openCloseEl(openedEl, contentEl) {
-        if (openedEl) {
-            this.toggleEl(openedEl);
-        } else {
-            this.toggleEl(contentEl);
-        }
+    findNavEl(el) {
+        return el.closest('.' + Tab.NAV_EL_CLASS)
+    }
+
+    getNavElIndex(navItem) {
+        return this.navItems.indexOf(navItem)
+    }
+
+    setActive(index) {
+        this.currentTabIndex = index
+        this.navItems[index].classList.add(Tab.NAV_ITEM_CLASS)
+        this.contentItems[index].classList.add(Tab.CONTENT_ITEM_ACTIVE)
+    }
+
+    removeActive(index) {
+        this.navItems[index].classList.remove(Tab.NAV_ITEM_CLASS)
+        this.contentItems[index].classList.remove(Tab.CONTENT_ITEM_ACTIVE)
     }
 }
-
-

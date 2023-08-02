@@ -1,25 +1,30 @@
+body{
+    display: flex;
+    justify-content: center;
+}
 nav{
     display: flex;
     gap: 20px;
+    justify-content: space-between;
 }
-.navigation-element {
+.navigation-item {
     border: 1px solid darkred;
     background-color: white;
     cursor: pointer;
 }
 
-.navigation-element_active {
+.navigation-item-active {
     background-color: gold;
     border-bottom: 1px solid gold;
 }
 
-.content-block{
+.content-item {
     height: 50px;
     background-color: gold;
     width: 300px;
     display: none;
 }
 
-.open {
+.content-item-active {
     display: block;
 }
