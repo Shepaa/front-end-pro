@@ -9,26 +9,24 @@ function onBtnClick() {
         .then((response) => {
             if (response.ok) {
                 return response.json();
-            } else {
-                alert("Nickname is not correct")
             }
         })
         .then((data) => {
-            createWaiters(data.avatar_url, data.public_repos, data.followers)
+            renderData(data)
         })
         .catch((error) => {
-            console.log(`fail: ${error}`)
+            alert(error)
         });
 }
 
-function createWaiters(avatar, repositories, followers) {
+function renderData(data) {
     const HTML = `
     <div>
-        <img src="${avatar}" alt="User Avatar">
+        <img src="${data.avatar_url}" alt="User Avatar">
     </div>
     <div class="info">
-        <div>Amount of repositories: ${repositories}</div>
-        <div>Amount of followers: ${followers}</div>
+        <div>Amount of repositories: ${data.public_repos}</div>
+        <div>Amount of followers: ${data.followers}</div>
     </div>
 `;
     list.insertAdjacentHTML("beforeend", HTML);
