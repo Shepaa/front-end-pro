@@ -1,10 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Todo List</title>
+    <script src="index.js" defer></script>
+    <script src="../lib/showError.js"></script>
 </head>
 <body>
 
+<div class="main-content">
+    <div class="interaction">
+        <input id="msgInput" type="text" placeholder="Введите сообщение"/>
+        <button id="msgButton">Отправить</button>
+    </div>
+    <ul id="todoList"></ul>
+</div>
 </body>
 </html>
