@@ -5,7 +5,7 @@
     flex-direction: column;
     justify-content: center;
 }
-.springgreen{
+.done{
     display: flex;
     justify-content: center;
 }
@@ -22,7 +22,7 @@ span{
     margin: 10px;
     cursor: pointer;
 }
-.springgreen {
+.done {
     display: initial;
     background-color: springgreen;
     opacity: 0.5;

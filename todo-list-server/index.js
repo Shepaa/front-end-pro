@@ -11,6 +11,10 @@ const submitBtnEl = document.querySelector(`#${SUBMIT_BTN_ID}`);
 submitBtnEl.addEventListener(`click`, onBtnClick);
 todoList.addEventListener('click', onUlClick);
 
+getTodoList()
+    .then(list => renderList(list))
+    .catch(e => showError(e.message));
+
 function onBtnClick() {
     const todo = getData();
     if (!isTodoValid(todo)) {
@@ -71,10 +75,6 @@ function generateTodoHtml(todo) {
 `
 }
 
-getTodoList()
-    .then(list => renderList(list))
-    .catch(e => showError(e.message));
-
 function getTodoList() {
     return fetch(URL)
         .then((response) => {
@@ -107,7 +107,7 @@ function onUlClick(e) {
     }
 
     if (e.target.classList.contains('inputValue')) {
-        span.classList.toggle('springgreen')
+        span.classList.toggle('done')
     }
 
 }
