@@ -3,6 +3,8 @@ const surnameInputEl = document.querySelector(".surnameInput")
 const phoneInputEl = document.querySelector(".phoneInput")
 const table = document.querySelector(".table");
 const btn = document.querySelector(".btn")
+let contactsList = [];
+
 btn.addEventListener('click', onBtnClick);
 table.addEventListener('click', onTableClick);
 
@@ -22,39 +24,36 @@ function onBtnClick() {
 
             })
             .catch(e => showError(e.message));
-
     }
 }
 
 TodoAPI.getContactList()
     .then((list) => {
-        renderList(list)
+        contactsList = list;
+        renderList(contactsList);
     })
 
 
 function onTableClick(e) {
     const tr = e.target.closest(".col")
-    const id = tr.dataset.id
+    const idTr = tr.dataset.id
     if (e.target.classList.contains('deleteBtn')) {
-        TodoAPI.deleteTodoEl(id)
+        TodoAPI.deleteTodoEl(idTr)
             .then(() => tr.remove())
             .catch(e => showError(e.message))
     } else if (e.target.classList.contains('editBtn')) {
         nameInputEl.value = getContactData(tr).name;
         surnameInputEl.value = getContactData(tr).lastName;
         phoneInputEl.value = getContactData(tr).phone;
-
         btn.removeEventListener('click', onBtnClick);
         btn.addEventListener(`click`, onEditBtnClick);
-
     }
 }
 
 function getContactData(parent) {
-    const name = parent.querySelector('td:nth-child(1)').textContent
-    const lastName = parent.querySelector('td:nth-child(2)').textContent
-    const phone = parent.querySelector('td:nth-child(3)').textContent
-
+    const name = parent.querySelector('td:nth-child(1)').textContent;
+    const lastName = parent.querySelector('td:nth-child(2)').textContent;
+    const phone = parent.querySelector('td:nth-child(3)').textContent;
     return {
         name,
         lastName,
@@ -62,27 +61,31 @@ function getContactData(parent) {
     };
 }
 
-function onEditBtnClick(id) {
+function onEditBtnClick() {
     const updatedTodo = getTodoData();
-    if (isTodoValid(updatedTodo)) {
-        TodoAPI.updateContactEl(id, updatedTodo)
-            .then(() => {
-// TODO сделай вась уже это
-            })
-            .catch(e => showError(e.message));
-    }
+    const idCol = document.querySelector('.col').dataset.id;
+    TodoAPI.updateContactEl(idCol, updatedTodo).then(() => {
+        if (isTodoValid(updatedTodo)) {
+            updateContactInTable(idCol, updatedTodo)
+            clear();
+
+            btn.removeEventListener('click', onEditBtnClick);
+            btn.addEventListener(`click`, onBtnClick);
+        }
+
+    })
 }
 
-function updateContactInTable(id, updatedTodo) {
-const lists = document.querySelectorAll('.col');
-lists.forEach((list)=>{
-    if (list.dataset.id === id){
-        const tdElements = list.querySelectorAll('td');
-        tdElements[0].textContent = updatedTodo.firstName;
-        tdElements[1].textContent = updatedTodo.lastName;
-        tdElements[2].textContent = updatedTodo.phone;
-    }
-})
+function updateContactInTable(idCol, updatedTodo) {
+    const lists = document.querySelectorAll('.col');
+    lists.forEach((list) => {
+        if (list.dataset.id === idCol) {
+            const tdElements = list.querySelectorAll('td');
+            tdElements[0].textContent = updatedTodo.firstName;
+            tdElements[1].textContent = updatedTodo.lastName;
+            tdElements[2].textContent = updatedTodo.phone;
+        }
+    });
 }
 
 function getTodoData() {
@@ -123,7 +126,6 @@ function generateHtml(todo) {
         <td><button class="editBtn">Edit</button></td>
     </tr>
 `
-
 }
 
 function clear() {
