@@ -135,7 +135,7 @@ function clear() {
 }
 
 function updateContactInTable(idCol, updatedTodo) {
-    contactsList = document.querySelector(`[data-id~="${idCol}"]`)
+    contactsList = document.querySelector(`[data-id="${idCol}"]`)
     const tdElements = contactsList.querySelectorAll('td')
     tdElements[0].textContent = updatedTodo.firstName;
     tdElements[1].textContent = updatedTodo.lastName;
