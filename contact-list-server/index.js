@@ -99,13 +99,14 @@ function editData(e) {
     phoneInputEl.value = getContactData(tr).phone;
     btn.removeEventListener('click', onBtnClick);
     btn.currentId = idTr;
-    btn.addEventListener(`click`, onEditBtnClick);
+    btn.addEventListener(`click`, saveUpdatedData);
 }
 
 function getContactData(parent) {
     const name = parent.querySelector('td:nth-child(1)').textContent;
     const lastName = parent.querySelector('td:nth-child(2)').textContent;
     const phone = parent.querySelector('td:nth-child(3)').textContent;
+
     return {
         name,
         lastName,
@@ -113,14 +114,14 @@ function getContactData(parent) {
     };
 }
 
-function onEditBtnClick(e) {
+function saveUpdatedData(e) {
     const updatedTodo = getTodoData();
     const idCol = e.target.currentId;
     todoAPI.updateContactEl(idCol, updatedTodo).then(() => {
         if (isTodoValid(updatedTodo)) {
             updateContactInTable(idCol, updatedTodo)
             clear();
-            btn.removeEventListener('click', onEditBtnClick);
+            btn.removeEventListener('click', saveUpdatedData);
             btn.addEventListener(`click`, onBtnClick);
         }
 
