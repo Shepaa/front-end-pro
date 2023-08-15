@@ -11,6 +11,7 @@ const todoAPI = new TodoAPI(todoUrl);
 let contactsList = [];
 btn.addEventListener('click', onBtnClick);
 table.addEventListener('click', onTableClick);
+
 function onBtnClick() {
     const todo = getTodoData();
     if (isTodoValid(todo)) {
@@ -45,10 +46,12 @@ function isTodoValid(todo) {
     }
     return true;
 }
+
 function renderContact(todo) {
     const contactList = generateHtml(todo);
     table.insertAdjacentHTML("beforeend", contactList)
 }
+
 function generateHtml(todo) {
     return `
     <tr class="col" data-id="${todo.id}">
@@ -61,20 +64,11 @@ function generateHtml(todo) {
 `
 }
 
-
-
-
-
-
-
-
-
-
-
 todoAPI.getContactList()
     .then((list) => {
         renderList(list);
     })
+
 function renderList(list) {
     const html = list.map(generateHtml).join('');
     table.insertAdjacentHTML(`beforeend`, html)
@@ -88,6 +82,7 @@ function onTableClick(e) {
     }
 
 }
+
 function onDeleteBtn(e) {
     const tr = e.target.closest(".col")
     const idTr = tr.dataset.id
@@ -131,11 +126,13 @@ function onEditBtnClick(e) {
 
     })
 }
+
 function clear() {
     nameInputEl.value = "";
     surnameInputEl.value = "";
     phoneInputEl.value = "";
 }
+
 function updateContactInTable(idCol, updatedTodo) {
     contactsList = document.querySelector(`[data-id~="${idCol}"]`)
     const tdElements = contactsList.querySelectorAll('td')
