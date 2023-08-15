@@ -78,7 +78,7 @@ function onTableClick(e) {
     if (e.target.classList.contains('deleteBtn')) {
         onDeleteBtn(e)
     } else if (e.target.classList.contains('editBtn')) {
-        editData(e);
+        getMutableDataInForms(e);
     }
 
 }
@@ -91,7 +91,7 @@ function onDeleteBtn(e) {
         .catch(e => showError(e.message));
 }
 
-function editData(e) {
+function getMutableDataInForms(e) {
     const tr = e.target.closest(".col")
     const idTr = tr.dataset.id
     nameInputEl.value = getContactData(tr).name;
