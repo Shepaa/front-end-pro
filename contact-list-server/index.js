@@ -1,6 +1,6 @@
 import {TodoAPI} from '../API/todoAPI.js';
 import {todoUrl} from '../API/URL.js';
-import {showError, clearFormData} from '../lib/libIndex.js';
+import {showError} from '../lib/libIndex.js';
 
 const nameInputEl = document.querySelector(".nameInput");
 const surnameInputEl = document.querySelector(".surnameInput");
@@ -18,7 +18,7 @@ function onBtnClick() {
         todoAPI.createContactEl(todo)
             .then((newTodo) => {
                 renderContact(newTodo);
-                clearFormData(todo)
+                clear()
 
             })
             .catch(e => showError(e.message));
