@@ -3,7 +3,6 @@ import {waitersURL} from '../API/URL.js';
 import {showError} from '../lib/libIndex.js';
 
 const nameInputEl = document.querySelector(".nameInput");
-const waitersId = document.querySelector(".surnameInput");
 const phoneInputEl = document.querySelector(".phoneInput");
 const table = document.querySelector(".table");
 const btn = document.querySelector(".btn");
@@ -19,7 +18,7 @@ function onBtnClick() {
     if (isTodoValid(todo)) {
         todoAPI.createEl(todo)
             .then((newTodo) => {
-                renderContact(newTodo);
+                renderWaiters(newTodo);
                 clear()
 
             })
@@ -35,20 +34,19 @@ function getTodoData() {
 }
 
 function isTodoValid(todo) {
-
     if (!todo.firstName || !todo.phone) {
         showError("Поля не должны быть пустыми");
         return false;
     }
 
     if (isNaN(todo.phone)) {
-        showError("В поле Phone и ID могут быть только цифры");
+        showError("В поле Phone могут быть только цифры");
         return false;
     }
     return true;
 }
 
-function renderContact(todo) {
+function renderWaiters(todo) {
     const contactList = generateHtml(todo);
     table.insertAdjacentHTML("beforeend", contactList)
 }
@@ -106,8 +104,7 @@ function fillForm(e) {
 
 function getContactData(parent) {
     const name = parent.querySelector('td:nth-child(1)').textContent;
-
-    const phone = parent.querySelector('td:nth-child(3)').textContent;
+    const phone = parent.querySelector('td:nth-child(2)').textContent;
 
     return {
         name,
@@ -120,7 +117,7 @@ function saveUpdatedData(e) {
     const idCol = e.target.currentId;
     todoAPI.updateEl(idCol, updatedTodo).then(() => {
         if (isTodoValid(updatedTodo)) {
-            updateContactInTable(idCol, updatedTodo)
+            updateWaitersInTable(idCol, updatedTodo)
             clear();
             btn.removeEventListener('click', saveUpdatedData);
             btn.addEventListener(`click`, onBtnClick);
@@ -134,11 +131,11 @@ function clear() {
     phoneInputEl.value = "";
 }
 
-function updateContactInTable(idCol, updatedTodo) {
+function updateWaitersInTable(idCol, updatedTodo) {
     contactsList = document.querySelector(`[data-id="${idCol}"]`)
     const tdElements = contactsList.querySelectorAll('td')
     tdElements[0].textContent = updatedTodo.firstName;
-    tdElements[2].textContent = updatedTodo.phone;
+    tdElements[1].textContent = updatedTodo.phone;
 }
 
 

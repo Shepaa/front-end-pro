@@ -14,7 +14,9 @@ body {
 .table {
     width: 100%;
     border-collapse: collapse;
+    margin-top: 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
     overflow: hidden;
 }
 
@@ -48,7 +50,7 @@ body {
     border-color: #007bff;
 }
 
-.btn {
+.btn, .btn-save {
     background-color: #007bff;
     color: #fff;
     border: none;
@@ -58,7 +60,7 @@ body {
     transition: background-color 0.3s;
 }
 
-.btn:hover {
+.btn:hover, .btn-save:hover {
     background-color: #0056b3;
 }
 
@@ -70,8 +72,10 @@ body {
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s;
+    margin-right: 5px;
 }
 
 .deleteBtn:hover, .editBtn:hover {
     background-color: #c82333;
 }
+
