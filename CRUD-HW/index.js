@@ -15,6 +15,7 @@ table.addEventListener('click', onTableClick);
 todoAPI.getList()
     .then((list) => {
         renderWaitersList(list)
+        waitersList = list;
     });
 
 function onBtnClick() {
