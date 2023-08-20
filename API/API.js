@@ -27,21 +27,21 @@ export class API {
             })
     }
 
-    createEl(todo) {
+    create(todo) {
         return this.request('', `POST`, todo)
             .catch(error => {
                 throw new Error(`Can not create todo: ${error.message}`);
             })
     }
 
-    deleteEl(id) {
+    delete(id) {
         return this.request(id, `DELETE`)
             .catch((error) => {
                 throw new Error(`Can not delete todo: ${error.message}`);
             })
     }
 
-    updateEl(id, changes) {
+    update(id, changes) {
         return this.request(id, `PUT`, changes)
             .catch(error => {
                 throw new Error(`Can not update todo: ${error.message}`);

@@ -15,7 +15,7 @@ table.addEventListener('click', onTableClick);
 function onBtnClick() {
     const todo = getTodoData();
     if (isTodoValid(todo)) {
-        todoAPI.createEl(todo)
+        todoAPI.create(todo)
             .then((newTodo) => {
                 renderContact(newTodo);
                 clear()
@@ -86,7 +86,7 @@ function onTableClick(e) {
 function onDeleteBtn(e) {
     const tr = e.target.closest(".col")
     const idTr = tr.dataset.id
-    todoAPI.deleteEl(idTr)
+    todoAPI.delete(idTr)
         .then(() => tr.remove())
         .catch(e => showError(e.message));
 }
@@ -117,7 +117,7 @@ function getContactData(parent) {
 function saveUpdatedData(e) {
     const updatedTodo = getTodoData();
     const idCol = e.target.currentId;
-    todoAPI.updateEl(idCol, updatedTodo).then(() => {
+    todoAPI.update(idCol, updatedTodo).then(() => {
         if (isTodoValid(updatedTodo)) {
             updateContactInTable(idCol, updatedTodo)
             clear();

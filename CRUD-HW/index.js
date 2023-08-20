@@ -21,7 +21,7 @@ todoAPI.getList()
 function onBtnClick() {
     const todo = getWaitersData();
     if (isTodoValid(todo)) {
-        todoAPI.createEl(todo)
+        todoAPI.create(todo)
             .then((newTodo) => {
                 renderWaiters(newTodo);
                 clear();
@@ -78,7 +78,7 @@ function onTableClick(e) {
 function onDeleteBtnClick(e) {
     const tr = e.target.closest(".col");
     const idTr = tr.dataset.id;
-    todoAPI.deleteEl(idTr)
+    todoAPI.delete(idTr)
         .then(() => tr.remove())
         .catch(e => showError(e.message));
 }
@@ -106,7 +106,7 @@ function getWaitersFormsData(parent) {
 function saveUpdatedData(e) {
     const updatedTodo = getWaitersData();
     const idCol = e.target.currentId;
-    todoAPI.updateEl(idCol, updatedTodo).then(() => {
+    todoAPI.update(idCol, updatedTodo).then(() => {
         if (isTodoValid(updatedTodo)) {
             updateWaitersInTable(idCol, updatedTodo);
             clear();
