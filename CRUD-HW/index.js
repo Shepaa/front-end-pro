@@ -51,8 +51,8 @@ function isTodoValid(todo) {
 }
 
 function renderWaiters(todo) {
-    const WaitersHtml = generateHtml(todo);
-    table.insertAdjacentHTML("beforeend", WaitersHtml);
+    const waitersHtml = generateHtml(todo);
+    table.insertAdjacentHTML("beforeend", waitersHtml);
 }
 
 function generateHtml(todo) {
@@ -69,14 +69,14 @@ function generateHtml(todo) {
 
 function onTableClick(e) {
     if (e.target.classList.contains('deleteBtn')) {
-        onDeleteBtnClick(e);
+        onDeleteBtnClick(e.target);
     } else if (e.target.classList.contains('editBtn')) {
-        fillForm(e);
+        fillForm(e.target);
     }
 }
 
 function onDeleteBtnClick(e) {
-    const tr = e.target.closest(".col");
+    const tr = e.closest(".col");
     const idTr = tr.dataset.id;
     todoAPI.deleteEl(idTr)
         .then(() => tr.remove())
@@ -84,23 +84,26 @@ function onDeleteBtnClick(e) {
 }
 
 function fillForm(e) {
-    const tr = e.target.closest(".col");
+    const tr = e.closest(".col");
     const idTr = tr.dataset.id;
-    nameInputEl.value = getWaitersFormsData(tr).name;
-    phoneInputEl.value = getWaitersFormsData(tr).phone;
+    const getInputsData = getWaitersFormsData(idTr)
+    nameInputEl.value = getInputsData.name;
+    phoneInputEl.value = getInputsData.phone;
     btn.removeEventListener('click', onBtnClick);
     btn.currentId = idTr;
     btn.addEventListener(`click`, saveUpdatedData);
 }
 
-function getWaitersFormsData(parent) {
-    const name = parent.querySelector('td:nth-child(1)').textContent;
-    const phone = parent.querySelector('td:nth-child(2)').textContent;
+function getWaitersFormsData(id) {
+    waitersList = document.querySelector(`[data-id="${id}"]`);
+    const waiterTdEl = waitersList.querySelectorAll('td');
+    const name = waiterTdEl[0].textContent;
+    const phone = waiterTdEl[1].textContent;
 
     return {
         name,
         phone
-    };
+    }
 }
 
 function saveUpdatedData(e) {
