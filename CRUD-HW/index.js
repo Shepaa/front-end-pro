@@ -31,6 +31,7 @@ function onBtnClick() {
 }
 
 function getWaitersData() {
+
     return {
         firstName: nameInputEl.value,
         phone: phoneInputEl.value,
@@ -95,8 +96,8 @@ function fillForm(e) {
 }
 
 function getWaitersFormsData(id) {
-    waitersList = document.querySelector(`[data-id="${id}"]`);
-    const waiterTdEl = waitersList.querySelectorAll('td');
+
+    const waiterTdEl = getTdElements(id);
     const name = waiterTdEl[0].textContent;
     const phone = waiterTdEl[1].textContent;
 
@@ -109,22 +110,27 @@ function getWaitersFormsData(id) {
 function saveUpdatedData(e) {
     const updatedTodo = getWaitersData();
     const idCol = e.target.currentId;
-    todoAPI.updateEl(idCol, updatedTodo).then(() => {
-        if (isTodoValid(updatedTodo)) {
+    if (isTodoValid(updatedTodo)) {
+        todoAPI.updateEl(idCol, updatedTodo).then(() => {
             updateWaitersInTable(idCol, updatedTodo);
             clear();
             btn.removeEventListener('click', saveUpdatedData);
             btn.addEventListener(`click`, onBtnClick);
-        }
 
-    })
+        })
+    }
 }
 
 function updateWaitersInTable(idCol, updatedTodo) {
-    waitersList = document.querySelector(`[data-id="${idCol}"]`);
-    const tdElements = waitersList.querySelectorAll('td');
+    const tdElements = getTdElements(idCol)
     tdElements[0].textContent = updatedTodo.firstName;
     tdElements[1].textContent = updatedTodo.phone;
+}
+
+function getTdElements(id) {
+    const waiterColEl = document.querySelector(`[data-id="${id}"]`);
+    return waiterColEl.querySelectorAll('td');
+
 }
 
 function clear() {
@@ -137,3 +143,5 @@ function renderWaitersList(list) {
 
     table.insertAdjacentHTML(`beforeend`, html);
 }
+
+
