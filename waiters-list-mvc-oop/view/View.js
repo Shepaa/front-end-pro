@@ -103,8 +103,7 @@ export class View {
     updateWaiterInTable(id, updatedWaiter) {
         const waiterEl = this.findWaiterElById(id);
 
-        waiterEl[0].textContent = updatedWaiter.firstName;
-        waiterEl[1].textContent = updatedWaiter.phone;
+        waiterEl.outerHTML = this.generateHtml(updatedWaiter)
     }
 
     getInputsData() {

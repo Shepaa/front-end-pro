@@ -6,7 +6,7 @@ export class Controller {
         this.rootEl = rootEl;
         this.collection = new Collection()
         this.view = new View({
-            onSubmit: contact => this.saveWaiter(contact),
+            onSubmit: waiter => this.saveWaiter(waiter),
             onDelete: (id) => {
                 this.collection.remove(id)
                     .then(() => {
