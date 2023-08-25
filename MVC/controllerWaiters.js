@@ -1,8 +1,9 @@
-
 import {
     create,
     getList,
-    remove, update,
+    getWaitersList,
+    remove,
+    update,
 } from './modelWaiters.js'
 import {
     fillInputs,
@@ -11,57 +12,60 @@ import {
     getInputsData,
     clear,
     renderWaiter,
-    renderWaitersList,
+    renderWaiterList,
     table,
-    btn,
-    updateWaiterInTable
+    saveBtn,
+    updateWaiterInTable, getWaiterById, isWaiterValid
 } from './waitersView.js'
 
 
 export function startApp() {
-    btn.addEventListener('click', onBtnClick);
+    saveBtn.addEventListener('click', onSaveBtnClick);
     table.addEventListener('click', onTableClick);
+
     getList()
         .then((list) => {
-            renderWaitersList(list);
+            renderWaiterList(list);
         });
 }
 
-export function onBtnClick() {
-    const todo = getInputsData();
-    create(todo)
-        .then((newTodo) => {
-            renderWaiter(newTodo);
-            clear();
-        })
-}
+export function onSaveBtnClick() {
+    const waiter = getInputsData();
 
-export function onTableClick(e) {
-    if (findRemoveBtn(e)) {
-        onDeleteBtnClick(e);
-    } else if (findEditBtn(e)) {
-        fillInputs(e, onBtnClick, saveUpdatedData);
+    if (!isWaiterValid(waiter)) {
+        return;
+    }
+
+    if (Number(waiter.id)) {
+        update(waiter.id, waiter)
+            .then(() => {
+                updateWaiterInTable(waiter.id, waiter);
+                clear();
+            })
+    } else {
+        create(waiter)
+            .then((newWaiter) => {
+                renderWaiter(newWaiter);
+                clear();
+            })
     }
 }
 
-function onDeleteBtnClick(e) {
-    const tr = e.target.closest(".col");
-    const idTr = tr.dataset.id;
-    remove(idTr)
-        .then(() => tr.remove());
+export function onTableClick(e) {
+    const target = e.target
+    if (findRemoveBtn(target)) {
+        onDeleteBtnClick(target);
+    } else if (findEditBtn(target)) {
+        fillInputs(target, getWaitersList());
+
+    }
 }
 
-function saveUpdatedData(e) {
-    const updatedTodo = getInputsData();
-    const idCol = e.target.currentId;
-
-    update(idCol, updatedTodo)
-        .then(() => {
-            updateWaiterInTable(idCol, updatedTodo);
-            clear();
-            btn.removeEventListener('click', saveUpdatedData);
-            btn.addEventListener(`click`, onBtnClick);
-        })
+function onDeleteBtnClick(el) {
+    const waiter = getWaiterById(el)
+    const waiterId = waiter.dataset.id
+    remove(waiterId)
+        .then(() => waiter.remove());
 }
 
 

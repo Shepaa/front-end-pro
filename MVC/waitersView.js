@@ -1,90 +1,98 @@
 import {showError} from "../lib/showError.js";
 
+
+const idInputEl = document.querySelector(".idInput")
 const nameInputEl = document.querySelector(".nameInput");
 const phoneInputEl = document.querySelector(".phoneInput");
 export const table = document.querySelector(".table");
-export const btn = document.querySelector(".btn");
+export const saveBtn = document.querySelector(".btn");
 
-export function generateHtml(todo) {
+export function generateHtml(waiter) {
     return `
-    <tr class="col" data-id="${todo.id}">
-        <td>${todo.firstName}</td>
-        <td>${todo.phone}</td>
-        <td>${todo.id}</td>
+    <tr class="waiterItem" data-id="${waiter.id}">
+        <td>${waiter.firstName}</td>
+        <td>${waiter.phone}</td>
+        <td>${waiter.id}</td>
         <td><button class="deleteBtn" >Delete</button></td>
         <td><button class="editBtn">Edit</button></td>
     </tr>
 `
 }
 
-export function renderWaiter(todo) {
-    const WaitersHtml = generateHtml(todo);
+export function renderWaiter(waiter) {
+    const WaitersHtml = generateHtml(waiter);
     table.insertAdjacentHTML("beforeend", WaitersHtml);
 }
 
-export function renderWaitersList(list) {
+export function renderWaiterList(list) {
     const html = list.map(generateHtml).join('');
     table.insertAdjacentHTML(`beforeend`, html);
 }
 
-export function fillInputs(e, h1, h2) {
-    const btn = document.querySelector(".btn");
-    const tr = e.target.closest(".col");
-    const idTr = tr.dataset.id;
-    nameInputEl.value = getWaiterFormData(tr).name;
-    phoneInputEl.value = getWaiterFormData(tr).phone;
-    btn.removeEventListener('click', h1);
-    btn.currentId = idTr;
-    btn.addEventListener(`click`, h2);
+export function fillInputs(el, waitersList) {
+    const waiterItem = getWaiterById(el);
+    const waiterId = waiterItem.dataset.id;
+    const waiterById = findWaiterById(waiterId, waitersList);
+
+    idInputEl.value = waiterById.id
+    nameInputEl.value = waiterById.firstName;
+    phoneInputEl.value = waiterById.phone;
 }
 
-function getWaiterFormData(parent) {
-    const name = parent.querySelector('td:nth-child(1)').textContent;
-    const phone = parent.querySelector('td:nth-child(2)').textContent;
+function findWaiterById(id, waitersList) {
 
-    return {
-        name,
-        phone
-    };
+    return waitersList.find(waiter => waiter.id ===Number(id));
+
 }
 
-export function updateWaiterInTable(idCol, updatedTodo) {
-    const waitersEl = document.querySelector(`[data-id="${idCol}"]`);
-    const tdElements = waitersEl.querySelectorAll('td');
-    tdElements[0].textContent = updatedTodo.firstName;
-    tdElements[1].textContent = updatedTodo.phone;
+function getTdElements(id) {
+    const waiterEl = document.querySelector(`[data-id="${id}"]`);
+    return waiterEl.querySelectorAll('td');
+
+}
+
+export function updateWaiterInTable(id, updatedWaiter) {
+    const tdElements = getTdElements(id);
+
+    tdElements[0].textContent = updatedWaiter.firstName;
+    tdElements[1].textContent = updatedWaiter.phone;
 }
 
 export function getInputsData() {
-    const todo = {firstName: nameInputEl.value, phone: phoneInputEl.value}
-    if (isTodoValid(todo)) {
-        return todo;
+    const waiter = {id: idInputEl.value, firstName: nameInputEl.value, phone: phoneInputEl.value}
+
+    if (isWaiterValid(waiter)) {
+        return waiter;
     }
 }
 
 export function clear() {
+    idInputEl.value = "";
     nameInputEl.value = "";
     phoneInputEl.value = "";
 }
 
-function isTodoValid(todo) {
-    if (!todo.firstName || !todo.phone) {
+export function isWaiterValid(waiter) {
+    if (!waiter.firstName || !waiter.phone) {
         showError("Поля не должны быть пустыми");
         return false;
     }
 
-    if (isNaN(todo.phone)) {
+    if (isNaN(waiter.phone)) {
         showError("В поле Phone могут быть только цифры");
         return false;
     }
     return true;
 }
 
-export function findEditBtn(e) {
-    return e.target.classList.contains('editBtn')
+export function findEditBtn(el) {
+    return el.classList.contains('editBtn')
 }
 
-export function findRemoveBtn(e) {
-    return e.target.classList.contains('deleteBtn')
+export function findRemoveBtn(el) {
+    return el.classList.contains('deleteBtn')
 }
 
+export function getWaiterById(el) {
+    return el.closest(".waiterItem");
+}
