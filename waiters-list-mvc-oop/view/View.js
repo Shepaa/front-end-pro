@@ -101,7 +101,7 @@ export class View {
     }
 
     updateWaiterInTable(id, updatedWaiter) {
-        const waiterEl = this.getWaiterElById(id);
+        const waiterEl = this.findWaiterElById(id);
 
         waiterEl[0].textContent = updatedWaiter.firstName;
         waiterEl[1].textContent = updatedWaiter.phone;
@@ -115,11 +115,6 @@ export class View {
         }
     }
 
-    getWaiterElById(id) {
-        const waiterEl = this.findWaiterElById(id)
-
-        return waiterEl.querySelectorAll('td');
-    }
 
     findEditBtn(el) {
         return el.classList.contains('editBtn')
