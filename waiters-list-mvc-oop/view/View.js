@@ -54,28 +54,28 @@ export class View {
     }
 
     bindEvents() {
-        this.table.addEventListener('click', this.onTableClick.bind(this))
-        this.saveBtn.addEventListener('click', this.onFormSubmit.bind(this))
+        this.saveBtn.addEventListener('click', this.onFormSubmit.bind(this));
+        this.table.addEventListener('click', this.onTableClick.bind(this));
     }
 
     onFormSubmit(e) {
-        e.preventDefault()
+        e.preventDefault();
 
         const waiter = this.getInputsData();
 
         if (waiter !== undefined) {
-            this.options.onSubmit(waiter)
+            this.options.onSubmit(waiter);
         }
     }
 
     onTableClick(e) {
         const target = e.target;
-        const contactEl = this.findWaiterEl(target);
-        const id = Number(contactEl?.dataset?.id);
+        const waiterEl = this.findWaiterEl(target);
+        const id = Number(waiterEl?.dataset?.id);
 
         if (id) {
             if (this.findRemoveBtn(target)) {
-                this.options.onDelete(id)
+                this.options.onDelete(id);
             } else if (this.findEditBtn(target)) {
                 this.options.onEdit(id);
             }
@@ -95,7 +95,7 @@ export class View {
     }
 
     fillInputs(waiter) {
-        this.idInputEl.value = waiter.id
+        this.idInputEl.value = waiter.id;
         this.nameInputEl.value = waiter.firstName;
         this.phoneInputEl.value = waiter.phone;
     }
@@ -103,28 +103,31 @@ export class View {
     updateWaiterInTable(id, updatedWaiter) {
         const waiterEl = this.findWaiterElById(id);
 
-        waiterEl.outerHTML = this.generateHtml(updatedWaiter)
+        waiterEl.outerHTML = this.generateHtml(updatedWaiter);
     }
 
     getInputsData() {
-        const waiter = {id: this.idInputEl.value, firstName: this.nameInputEl.value, phone: this.phoneInputEl.value}
+        const waiter = {
+            id: this.idInputEl.value,
+            firstName: this.nameInputEl.value,
+            phone: this.phoneInputEl.value
+        };
 
         if (this.isWaiterValid(waiter)) {
             return waiter;
         }
     }
 
-
     findEditBtn(el) {
-        return el.classList.contains('editBtn')
+        return el.classList.contains('editBtn');
     }
 
     findRemoveBtn(el) {
-        return el.classList.contains('deleteBtn')
+        return el.classList.contains('deleteBtn');
     }
 
     findWaiterElById(id) {
-        return this.table.querySelector(`[data-id="${id}"]`)
+        return this.table.querySelector(`[data-id="${id}"]`);
     }
 
     findWaiterEl(target) {
@@ -132,12 +135,12 @@ export class View {
     }
 
     deleteWaiterById(id) {
-        const waiterEl = this.findWaiterElById(id)
+        const waiterEl = this.findWaiterElById(id);
 
         if (waiterEl) {
-            waiterEl.remove()
+            waiterEl.remove();
         } else {
-            throw new Error('Contact element not found')
+            throw new Error('element not found');
         }
     }
 
