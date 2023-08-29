@@ -29,7 +29,3 @@ function createCounter(baseValue) {
         get: () => counts
     };
 }
-
-
-
-

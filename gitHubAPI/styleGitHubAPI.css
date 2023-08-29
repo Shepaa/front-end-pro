@@ -1,0 +1,23 @@
+body {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+#input{
+    margin-left: 101px;
+    margin-bottom: 40px;
+}
+img {
+    max-width: 200px;
+    display: block;
+    margin: 0 auto;
+}
+
+.info {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.info div {
+    margin-bottom: 10px;
+}

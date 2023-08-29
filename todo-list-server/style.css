@@ -1,0 +1,29 @@
+
+.main-content{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+.done{
+    display: flex;
+    justify-content: center;
+}
+#msgInput{
+    border-radius: 10px;
+    text-align: center;
+}
+#msgButton{
+    border-radius: 10px;
+    margin-left: 10px;
+}
+
+span{
+    margin: 10px;
+    cursor: pointer;
+}
+.done {
+    display: initial;
+    background-color: springgreen;
+    opacity: 0.5;
+}
