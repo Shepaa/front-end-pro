@@ -1,91 +1,31 @@
-const QUESTIONS = [
-    {
-        question: 'Сколько хромосом у здорового человека? ',
-        answer: '46',
-        type: 'prompt',
-    },
-    {
-        question: 'Путин - хуйло?',
-        answer: true,
-        type: 'confirm',
-    },
-    {
-        question: 'Сколько хромосом у Путина? ',
-        answer: '47',
-        type: 'prompt',
-    },
-    {
-        question: 'Сколько тупых овец в московии (в млн)?',
-        answer: '144',
-        type: 'prompt',
-    },
-    {
-        question: 'Снесли ли памятник Екатерине-2 в Одессе?',
-        answer: true,
-        type: 'confirm',
-    },
-    {
-        question: 'Сколько черных пакетов выделяются на одного орка?',
-        answer: '1',
-        type: 'prompt',
-    },
-    {
-        question: 'На сколько вы оцениваете работу ЗСУ от 1 до 10?',
-        answer: '10',
-        type: 'prompt',
-    },
-    {
-        question: 'Со скольких позиций готовилось нападение на Беларусь?',
-        answer: '4',
-        type: 'prompt',
-    },
-    {
-        question: 'Нужно ли сжигать сосийский флаг?',
-        answer: true,
-        type: 'confirm',
-    },
-    {
-        question: 'Поддерживаете ли вы уход иностранных компаний из московии?',
-        answer: true,
-        type: 'confirm',
-    },
-    {
-        question: 'Считаете ли вы сосию своим домом',
-        answer: false,
-        type: 'confirm',
-    },
-];
-QUESTIONS.forEach(question => {
-    question.score = checkScore(question.answer, getAnswer(question.question, question.type));
-});
-alert(sumScore(QUESTIONS));
-
-
-function checkScore(answer, userAnswer) {
-    let score;
-    (answer === userAnswer) ? score = 10 : score = 0;
-
-    return score;
-}
-
-
-function sumScore(questions) {
-    let scoreSum = 0;
-    questions.forEach(function (question) {
-        scoreSum += question.score;
-    })
-    return scoreSum;
-}
-
-
-function getAnswer(question, type) {
-    let answer = null;
-    if (type === 'prompt') {
-        answer = prompt(question);
-    } else if (type === 'confirm') {
-        answer = confirm(question);
+let counter = createCounter(1000);
+console.log(counter.get()); // 1000
+counter.inc(10);
+console.log(counter.get()); // 1010
+counter.minus(10);
+console.log(counter.get()); // 1000
+counter.set(100);
+console.log(counter.get()); // 100
+counter.reset()
+console.log(counter.get()); // 1000
+function createCounter(baseValue) {
+    let counts;
+    if (!isNaN(baseValue)) {
+        counts = baseValue
     }
-    return answer;
+    return {
+        inc: (incValue) => {
+            (!isNaN(incValue)) ? counts += incValue : null;
+        },
+        minus: (minusValue) => {
+            (!isNaN(minusValue)) ? counts -= minusValue : null;
+        },
+        set: (setValue) => {
+            (!isNaN(setValue)) ? counts = setValue : null;
+        },
+        reset: () => {
+            counts = baseValue;
+        },
+        get: () => counts
+    };
 }
-
-
