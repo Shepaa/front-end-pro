@@ -1,7 +1,7 @@
 import {showError} from "../../../lib/showError.js";
 import styles from './viewStyle.m.css';
+import formHtml from './FormView.html'
 
-console.log(styles)
 
 export class View {
 
@@ -20,23 +20,7 @@ export class View {
     init() {
         const div = document.createElement('div')
 
-        div.innerHTML = `
-        <table class="table">
-            <tr class="nav">
-                <th>Name</th>
-                <th>Phone</th>
-                <th>ID</th>
-                <th>Action</th>
-            </tr>
-            <tr class="input-container">
-                <input type="hidden" class="idInput">
-                <td><input type="text" class="nameInput"></td>
-                <td><input type="text" class="phoneInput"></td>
-                <td>
-                    <button class="btn">Save</button>
-                </td>
-            </tr>
-        </table>`
+        div.innerHTML = formHtml;
 
         return div
     }
