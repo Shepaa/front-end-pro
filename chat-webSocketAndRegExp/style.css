@@ -1,0 +1,46 @@
+#chatContainer {
+    width: 300px; /* Ширина контейнера */
+    border: 1px solid #ccc; /* Граничная линия контейнера */
+    border-radius: 5px; /* Закругление углов */
+    padding: 10px;
+    margin: 20px auto; /* Центрирование по горизонтали */
+    background-color: #f2f2f2; /* Цвет фона контейнера */
+}
+
+/* Стилизация инпута для имени */
+#nameInput {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Стилизация инпута для сообщения */
+#messageInput {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Стилизация кнопки "Save" */
+#saveBtn {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff; /* Цвет фона кнопки */
+    color: #fff; /* Цвет текста на кнопке */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Стилизация чата */
+#chatContainer p {
+    margin: 5px 0;
+    padding: 5px;
+    background-color: #ffffff; /* Цвет фона сообщений */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
