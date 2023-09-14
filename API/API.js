@@ -3,21 +3,21 @@ export class API {
         this.url = url;
     }
 
-    request(url = '', method = 'GET', body) {
-        return fetch(`${this.url}${url}`, {
-            method,
-            body: body ? JSON.stringify(body) : undefined,
-            headers: {
-                'Content-type': 'application/json',
-            }
-        })
-            .then((response) => {
-                if (response.ok) {
-                    return response.json()
+    async request(url = '', method = 'GET', body) {
+        try {
+            const responseData = await fetch(`${this.url}${url}`, {
+                method,
+                body: body ? JSON.stringify(body) : undefined,
+                headers: {
+                    'Content-type': 'application/json',
                 }
-
-                throw new Error(`${response.status} ${response.statusText}`);
             })
+
+            return responseData.json()
+        } catch (e) {
+            throw new Error(`${e.status} ${e.statusText}`);
+        }
+
     }
 
     getList() {
