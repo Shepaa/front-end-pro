@@ -47,7 +47,7 @@ const List = ({animals}) => {
             </tr>
             </thead>
             <tbody>
-            {animals}
+            {animals.map(animal => <Animal key={animal.id} animal={animal}/>)}
             </tbody>
         </table>
     )
@@ -56,7 +56,7 @@ const List = ({animals}) => {
 root.render(
     <>
         <Form/>
-        <List animals={animals.map(animal => <Animal key={animal.id} animal={animal}/>)}/>
+        <List animals={animals}/>
 
     </>
 )
