@@ -4,7 +4,7 @@ import {WaiterList} from "./WaitersList";
 import {useWaiters} from "./hooks/useWaiters";
 
 export function WaitersApp() {
-    const {waiter, onWaitersSubmit,waiterList, onWaiterBtnClick, onWaiterEdit} = useWaiters();
+    const {waiter, onWaitersSubmit,waitersList, onWaiterBtnClick, onWaiterEdit} = useWaiters();
 
     return (
         <>
@@ -13,7 +13,7 @@ export function WaitersApp() {
                 onWaitersSubmit={onWaitersSubmit}
             />
             <WaiterList
-                waiterList={waiterList}
+                waiterList={waitersList}
                 onWaiterBtnClick={onWaiterBtnClick}
                 onWaiterEdit={onWaiterEdit}
             />

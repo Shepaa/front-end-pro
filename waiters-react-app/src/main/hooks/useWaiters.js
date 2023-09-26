@@ -49,7 +49,7 @@ export function useWaiters() {
 
     return {
         waiter,
-        waiterList: waitersList,
+        waitersList,
         onWaitersSubmit,
         onWaiterBtnClick,
         onWaiterEdit,
