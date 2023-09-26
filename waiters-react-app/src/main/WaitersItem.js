@@ -1,11 +1,11 @@
-export function WaiterItem({waiter}) {
+export function WaiterItem({waiter, onWaiterDeleteBtnClick, onWaiterEditBtnClick}) {
     return (
         <tr>
             <td>{waiter.firstName}</td>
             <td>
-                <button>Edit</button>
-                <button>Delete</button>
+                <button onClick={() => onWaiterEditBtnClick(waiter)}>Edit</button>
+                <button onClick={() => onWaiterDeleteBtnClick(waiter.id)}>Delete</button>
             </td>
         </tr>
-    )
+    );
 }

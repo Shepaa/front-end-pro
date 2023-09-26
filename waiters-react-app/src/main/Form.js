@@ -1,22 +1,26 @@
 import React from "react";
 
-export function Form({onWaitersSubmit}) {
+export function Form({waiter, onWaitersSubmit}) {
+    const [title, setTitle] = React.useState('');
 
-    const [title, setTitle] = React.useState('')
+    React.useEffect(() => {
+        if (waiter) {
+            setTitle(waiter.firstName);
+        }
+    }, [waiter])
 
     const onSubmit = (e) => {
-        e.preventDefault()
+        e.preventDefault();
 
-        console.log(title)
         onWaitersSubmit({
-            firstName: title
+           ...waiter,
+            firstName: title,
         });
+
+        setTitle("");
     }
 
-    const onChange = (e => {
-        setTitle(e.target.value)
-    })
-
+    const onChange = (e => {setTitle(e.target.value)});
 
     return (
         <form onSubmit={onSubmit}>
@@ -25,5 +29,5 @@ export function Form({onWaitersSubmit}) {
 
             <button type="submit">Save</button>
         </form>
-    )
+    );
 }
