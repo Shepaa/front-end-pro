@@ -1,27 +1,22 @@
 import React from "react";
 import {Form} from "./Form";
 import {WaiterList} from "./WaitersList";
-import {waitersAPI} from "../API/server";
+import {useWaiters} from "./hooks/useWaiters";
 
 export function WaitersApp() {
-
-    const [data, setData] = React.useState([])
-
-    React.useEffect(() => {
-        waitersAPI.getList().then(data => {
-            setData(data)
-        })
-    }, [])
-
-    const onWaitersSubmit = (newWaiter) => {
-        setData([...data, newWaiter])
-
-    }
+    const {waiter, onWaitersSubmit,waitersList, onWaiterBtnClick, onWaiterEdit} = useWaiters();
 
     return (
         <>
-            <Form onWaitersSubmit={onWaitersSubmit}/>
-            <WaiterList waiterList={data}/>
+            <Form
+                waiter={waiter}
+                onWaitersSubmit={onWaitersSubmit}
+            />
+            <WaiterList
+                waiterList={waitersList}
+                onWaiterBtnClick={onWaiterBtnClick}
+                onWaiterEdit={onWaiterEdit}
+            />
         </>
-    )
+    );
 }

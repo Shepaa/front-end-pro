@@ -1,12 +1,12 @@
 import {API} from "../../API/API.js";
-import {localHostUrl} from "../../API/URL.js";
+import {localHostWaitersURl} from "../../API/URL.js";
 import {showError} from "../../lib/showError.js";
 
 export class Collection {
     #list = []
 
     constructor() {
-        this.api = new API(localHostUrl)
+        this.api = new API(localHostWaitersURl)
     }
 
     async getList() {
