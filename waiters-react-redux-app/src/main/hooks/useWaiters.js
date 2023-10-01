@@ -1,13 +1,15 @@
 import React from "react";
 import {waitersAPI} from "../../API/server";
 import {useDispatch, useSelector} from "react-redux";
-import {actionSetList} from "../store/actions";
+import {
+    actionSetList,
+    actionEditList
+} from "../store/actions";
 
 export function useWaiters() {
     const dispatch = useDispatch();
     const waitersList = useSelector(state => state.waiters.waitersList)
-    const [waiter, setWaiter] = React.useState(undefined);
-    const [, setWaitersList] = React.useState([]);
+    const waiter = useSelector(state => state.waiters.waiter)
 
 
     React.useEffect(() => {
@@ -27,8 +29,7 @@ export function useWaiters() {
                 const newList =
                     waitersList.map((waiter) => waiter.id === formWaiter.id ? updatedWaiter : waiter);
 
-                setWaitersList(newList)
-                setWaiter(undefined);
+                dispatch(actionSetList(newList))
 
             })
         } else {
@@ -43,12 +44,12 @@ export function useWaiters() {
         if (id) {
             const updateList = waitersList.filter((waiter) => waiter.id !== id);
 
-            waitersAPI.delete(id).then(() => setWaitersList(updateList));
+            waitersAPI.delete(id).then(() => dispatch(actionSetList(updateList)));
         }
     }
 
     const onWaiterEdit = (editedWaiter) => {
-        setWaiter(editedWaiter);
+        dispatch(actionEditList(editedWaiter))
     }
 
     return {
