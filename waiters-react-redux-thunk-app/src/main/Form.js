@@ -4,8 +4,8 @@ import {waitersAPI} from "../API/server";
 import {actionCreateItem, actionUpdateItem, saveItem} from "./store/actions";
 
 export function Form() {
-    const [title, setTitle] = React.useState('');
     const waiter = useSelector(state => state.waiters.waiter)
+    const [title, setTitle] = React.useState('');
     const dispatch = useDispatch()
 
     React.useEffect(() => {
