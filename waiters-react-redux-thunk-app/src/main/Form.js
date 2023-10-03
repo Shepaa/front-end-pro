@@ -1,9 +1,12 @@
 import React from "react";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {waitersAPI} from "../API/server";
+import {actionCreateItem, actionUpdateItem, saveItem} from "./store/actions";
 
-export function Form({ onWaitersSubmit}) {
+export function Form() {
     const [title, setTitle] = React.useState('');
     const waiter = useSelector(state => state.waiters.waiter)
+    const dispatch = useDispatch()
 
     React.useEffect(() => {
         if (waiter) {
@@ -12,17 +15,25 @@ export function Form({ onWaitersSubmit}) {
     }, [waiter])
 
     const onSubmit = (e) => {
-        e.preventDefault();
+        e.preventDefault()
 
-        onWaitersSubmit({
-           ...waiter,
+        const formWaiter = {
+            ...waiter,
             firstName: title,
-        });
+        }
 
-        setTitle("");
+        if (formWaiter.firstName.trim() === "") {
+            alert("Field name can not be empty!");
+            return;
+        }
+
+        dispatch(saveItem(formWaiter))
+        setTitle("")
     }
 
-    const onChange = (e => {setTitle(e.target.value)});
+    const onChange = (e => {
+        setTitle(e.target.value)
+    });
 
     return (
         <form onSubmit={onSubmit}>
