@@ -1,8 +1,7 @@
 import React from "react";
 import {WaiterItem} from "./WaitersItem";
 import {useDispatch, useSelector} from "react-redux";
-import {waitersAPI} from "../API/server";
-import {actionSetList} from "./store/actions";
+import {actionGetApiList} from "./store/actions";
 
 export function WaiterList() {
     const dispatch = useDispatch();
@@ -10,9 +9,7 @@ export function WaiterList() {
 
 
     React.useEffect(() => {
-        waitersAPI.getList().then((newList) =>
-            dispatch(actionSetList(newList))
-        );
+        dispatch(actionGetApiList())
     }, []);
 
     return (

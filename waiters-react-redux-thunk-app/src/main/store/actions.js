@@ -7,11 +7,17 @@ export const ACTION_WAITER_CREATE_ITEM = 'WAITER_CREATE_ITEM';
 export const ACTION_WAITER_UPDATE_ITEM = 'WAITER_UPDATE_ITEM';
 
 
-
 export const actionCreateItem = (waiter) => ({type: ACTION_WAITER_CREATE_ITEM, payload: waiter});
 export const actionEditItem = (waiter) => ({type: ACTION_WAITER_SET_EDIT_ITEM, payload: waiter});
 export const actionUpdateItem = (waiter) => ({type: ACTION_WAITER_UPDATE_ITEM, payload: waiter});
-export const actionSetList = (list) => ({type: ACTION_WAITERS_SET_LIST, payload: list});
+
+export const actionGetApiList = () => {
+    return (dispatch) =>{
+        waitersAPI.getList().then((newList) =>
+            dispatch({type: ACTION_WAITERS_SET_LIST, payload: newList})
+        );
+    }
+}
 export const saveItem = (waiter) => {
     return (dispatch) => {
         if (waiter.id) {
