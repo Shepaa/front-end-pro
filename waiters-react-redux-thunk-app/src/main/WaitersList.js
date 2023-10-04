@@ -7,16 +7,14 @@ export function WaiterList() {
     const dispatch = useDispatch();
     const waitersList = useSelector(state => state.waiters.waitersList)
 
-
-    React.useEffect(() => {
-        dispatch(actionGetApiList())
-    }, []);
+    React.useEffect(() => {dispatch(actionGetApiList())}, []);
 
     return (
         <table>
             <thead>
             <tr>
                 <th>Name</th>
+                <th>Phone</th>
                 <th>Actions</th>
             </tr>
             </thead>

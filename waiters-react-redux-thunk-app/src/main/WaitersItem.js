@@ -18,6 +18,7 @@ export function WaiterItem({waiter}) {
     return (
         <tr>
             <td>{waiter.firstName}</td>
+            <td>{waiter.phone}</td>
             <td>
                 <button onClick={onWaiterEdit}>Edit</button>
                 <button onClick={onWaiterDeleteBtnClick}>Delete</button>
