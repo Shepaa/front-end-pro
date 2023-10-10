@@ -1,11 +1,13 @@
 import React, {useState} from "react";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import {photosAPI} from "../../API/server";
 import {PhotosItem} from "./PhotosItem";
 
 export function PhotosList() {
     const [photoList, setPhotoList] = useState([])
     const {albumId} = useParams();
+    const navigate = useNavigate();
+
 
     React.useEffect(() => {
         photosAPI.getList().then((newList) => {
@@ -17,7 +19,7 @@ export function PhotosList() {
     return (
         <>
             <h1>Albums</h1>
-            <button onClick={() => window.history.back()}>Back</button>
+            <button onClick={() => navigate(`/user/${albumId}/albums`)}>Back</button>
 
             <table>
                 <tbody>
