@@ -13,7 +13,7 @@ export function App() {
                 <Routes>
                     <Route path='/' element={<BasePage/>}/>
                     <Route path="/user" element={<UserList/>}/>
-                    <Route path="/user/:userId/albums/*" element={<AlbumsList/>}/>
+                    <Route path="/user/:userId/albums/" element={<AlbumsList/>}/>
                     <Route path="/user/:userId/albums/:albumId/photos" element={<PhotosList/>}/>
                     <Route path="*" element={<NotFound/>}/>
                 </Routes>

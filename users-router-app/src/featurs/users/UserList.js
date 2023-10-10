@@ -1,12 +1,12 @@
 import React, {useState} from "react";
 import {UserItem} from "./UserItem";
 import {userAPI} from "../../API/server";
+import {useNavigate} from "react-router-dom";
 
 
 export function UserList() {
-
-    const [userList , setUserList] = useState([])
-
+    const [userList , setUserList] = useState([]);
+    const navigate = useNavigate();
 
 
     React.useEffect(() => {
@@ -15,14 +15,10 @@ export function UserList() {
         })
     }, [userList]);
 
-
-
-
-
     return (
         <>
             <h1>Users List</h1>
-            <button onClick={() => window.history.back()}>Back</button>
+            <button onClick={() =>navigate("/")}>Back</button>
 
             <table>
                 <thead>
