@@ -3,9 +3,10 @@ import {useDishesColumn} from "./useDishesColumn";
 import React, {useState, useEffect} from "react";
 import {actionGetDishesList} from "./store/thunk";
 import {Page} from "../../pages/Page";
-import {Alert, Input, Table} from "antd";
+import {Alert, Input} from "antd";
 import {SearchOutlined} from "@ant-design/icons";
 import {AddButton} from "../componets/AddButton";
+import {CustomTable} from "../componets/Table";
 
 export function DishesList() {
     const dispatch = useDispatch();
@@ -41,7 +42,7 @@ export function DishesList() {
                 />
                 <AddButton path='/dishes/edit'/>
             </div>
-            <Table
+            <CustomTable
                 loading={dishesListLoading}
                 columns={columns}
                 dataSource={filteredDishes}
