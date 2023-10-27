@@ -1,0 +1,28 @@
+.aboutContainer {
+    padding: 20px;
+}
+
+.pageTitle {
+    text-align: center;
+}
+
+.contentContainer {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.card {
+    width: 300px;
+}
+
+@media (max-width: 768px) {
+    .contentContainer {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card {
+        width: 100%;
+    }
+}
