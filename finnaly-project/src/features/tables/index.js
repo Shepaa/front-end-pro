@@ -1,7 +1,7 @@
 import {TablesForm} from "./TablesForm";
 import {TablesList} from "./TablesList";
 import {Route, Routes} from "react-router-dom";
-import {NotFound} from "../../pages/NotFound";
+import {NotFound} from "../NotFound/NotFound";
 
 export function TablesApp() {
     return (

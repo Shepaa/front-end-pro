@@ -2,11 +2,11 @@ import {useDispatch, useSelector} from "react-redux";
 import {useDishesColumn} from "./useDishesColumn";
 import React, {useState, useEffect} from "react";
 import {actionGetDishesList} from "./store/thunk";
-import {Page} from "../../pages/Page";
+import {Page} from "../../componets/Page";
 import {Alert, Input} from "antd";
 import {SearchOutlined} from "@ant-design/icons";
-import {AddButton} from "../componets/AddButton";
-import {CustomTable} from "../componets/Table";
+import {AddButton} from "../../componets/AddButton";
+import {CustomTable} from "../../componets/Table";
 
 export function DishesList() {
     const dispatch = useDispatch();

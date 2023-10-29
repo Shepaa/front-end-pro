@@ -2,7 +2,7 @@ import React from "react";
 import {WaiterForm} from "./WaiterForm";
 import {WaiterList} from "./WaitersList";
 import {Route, Routes} from "react-router-dom";
-import {NotFound} from "../../pages/NotFound";
+import {NotFound} from "../NotFound/NotFound";
 
 export function WaitersApp() {
 

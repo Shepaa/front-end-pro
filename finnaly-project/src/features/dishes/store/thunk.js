@@ -1,4 +1,4 @@
-import {dishesAPI} from "../../../../API/server";
+import {dishesAPI} from "../../../API/server";
 
 import * as action from './reducer'
 export const actionGetDishesList = () => {

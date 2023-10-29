@@ -10,9 +10,9 @@ import {
     Formik,
     Form
 } from "formik";
-import {ValidationError} from "../componets/ValidationError";
+import {ValidationError} from "../../componets/ValidationError";
 import {useNavigate, useParams} from "react-router-dom";
-import {SaveButton} from "../componets/SaveButton";
+import {SaveButton} from "../../componets/SaveButton";
 import styles from '../Form.module.css';
 
 const validationSchema = Yup.object({

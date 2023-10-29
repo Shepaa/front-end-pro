@@ -1,11 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import React, { useState } from "react";
 import { actionGetApiList } from "./store/thunk";
-import { Page } from "../../pages/Page";
+import { Page } from "../../componets/Page";
 import { Alert, Input, Space} from "antd";
 import { useTablesColumns } from "./useTablesColumns";
-import {AddButton} from "../componets/AddButton";
-import {CustomTable} from "../componets/Table";
+import {AddButton} from "../../componets/AddButton";
+import {CustomTable} from "../../componets/Table";
 import { SearchOutlined } from "@ant-design/icons";
 
 export function TablesList() {

@@ -1,4 +1,4 @@
-import {orderAPI} from "../../../../API/server";
+import {orderAPI} from "../../../API/server";
 
 import * as action from './reducer'
 export const actionGetOrdersList = () => {

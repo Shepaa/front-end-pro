@@ -1,4 +1,4 @@
-import {tablesAPI} from "../../../../API/server";
+import {tablesAPI} from "../../../API/server";
 
 import * as action from './reducer'
 export const actionGetApiList = () => {

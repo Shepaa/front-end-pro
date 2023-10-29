@@ -1,7 +1,7 @@
 import React from 'react';
-import { Layout as LayoutAntd, Space, theme } from 'antd';
-import { NavLink, Outlet } from 'react-router-dom';
-import styles from '../../../App.module.css';
+import {Button, Layout as LayoutAntd, Space, theme} from 'antd';
+import {Link, NavLink, Outlet} from 'react-router-dom';
+import styles from '../App.module.css';
 
 const {
     Header,
@@ -40,6 +40,9 @@ export function Layout() {
             </Header>
             <Content>
                 <div style={{ background: colorBgContainer, minHeight: '80vh', padding: '20px' }}>
+                   <Link to='/'>
+                       <Button type='primary' style={{float:'right'}}>Go Home</Button>
+                   </Link>
                     <Outlet />
                 </div>
             </Content>

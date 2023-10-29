@@ -1,8 +1,8 @@
 import {configureStore} from '@reduxjs/toolkit'
-import waiterReducer from "../featurs/main/waiters/store/reducer";
-import tableReducer from '../featurs/main/tables/store/reducer'
-import dishesReducer from "../featurs/main/dishes/store/reducer";
-import orderReducer from "../featurs/main/orders/store/reducer";
+import waiterReducer from "../features/waiters/store/reducer";
+import tableReducer from '../features/tables/store/reducer'
+import dishesReducer from "../features/dishes/store/reducer";
+import orderReducer from "../features/orders/store/reducer";
 
 
 export const store = configureStore({

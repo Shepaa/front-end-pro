@@ -5,8 +5,8 @@ import React, {useEffect} from "react";
 import {getOneDish} from "./store/thunk";
 import {saveDish} from "./store/thunk";
 import {Field, Form, Formik} from "formik";
-import {ValidationError} from "../componets/ValidationError";
-import {SaveButton} from "../componets/SaveButton";
+import {ValidationError} from "../../componets/ValidationError";
+import {SaveButton} from "../../componets/SaveButton";
 import styles from '../Form.module.css';
 
 

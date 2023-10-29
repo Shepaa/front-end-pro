@@ -8,7 +8,6 @@ import { Formik, Field } from 'formik';
 
 export function OrdersForm() {
     const dispatch = useDispatch();
-    const waitersList = useSelector(state => state.waiters.waitersList);
     const dishesList = useSelector(state => state.dishes.dishesList);
     const order = useSelector(state => state.orders.order);
     const { orderId } = useParams();

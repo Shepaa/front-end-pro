@@ -1,4 +1,4 @@
-import {waitersAPI} from "../../../../API/server";
+import {waitersAPI} from "../../../API/server";
 
 import * as action from './reducer'
 export const actionGetWaitersList = () => {

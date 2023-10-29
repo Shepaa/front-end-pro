@@ -4,7 +4,7 @@ import styles from './About.module.css';
 
 const { Title, Paragraph } = Typography;
 
-export function About() {
+export function AboutUs() {
     return (
         <div className={styles.aboutContainer}>
             <Title level={2} className={styles.pageTitle}>About Us</Title>

@@ -1,7 +1,7 @@
 import {Route, Routes} from "react-router-dom";
 import {DishesForm} from "./dishesForm";
 import {DishesList} from "./dishesList";
-import {NotFound} from "../../pages/NotFound";
+import {NotFound} from "../NotFound/NotFound";
 import React from "react";
 
 export function DishesApp() {

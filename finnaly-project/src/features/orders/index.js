@@ -1,6 +1,6 @@
 import {Route, Routes} from "react-router-dom";
 import {OrdersList} from "./ordersList";
-import {NotFound} from "../../pages/NotFound";
+import {NotFound} from "../NotFound/NotFound";
 import {OrdersForm} from "./ordersForm";
 
 export function OrdersApp() {

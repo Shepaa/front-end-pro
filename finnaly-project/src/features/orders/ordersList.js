@@ -7,8 +7,8 @@ import {actionGetDishesList} from "../dishes/store/thunk";
 import {Alert} from "antd";
 import {useOrderColumns} from "./useOrdersColumn";
 import {processOrders} from "./utilites/orderUtils";
-import {CustomTable} from "../componets/Table";
-import {AddButton} from "../componets/AddButton";
+import {CustomTable} from "../../componets/Table";
+import {AddButton} from "../../componets/AddButton";
 
 
 export function OrdersList() {

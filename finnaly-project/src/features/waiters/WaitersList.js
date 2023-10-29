@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { actionGetWaitersList } from "./store/thunk";
 import { Alert, Input} from "antd";
 import { useWaitersColumns } from "./useWaitersColumns";
-import { Page } from "../../pages/Page";
+import { Page } from "../../componets/Page";
 import { SearchOutlined } from "@ant-design/icons";
-import {AddButton} from "../componets/AddButton";
-import {CustomTable} from "../componets/Table";
+import {AddButton} from "../../componets/AddButton";
+import {CustomTable} from "../../componets/Table";
 
 export function WaiterList() {
     const dispatch = useDispatch();
