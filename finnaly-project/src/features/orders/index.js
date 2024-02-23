@@ -7,14 +7,12 @@ export function OrdersApp() {
     return (
 
         <>
-        <Routes>
-            <Route path='/list' element={<OrdersList/>}/>
-            <Route path='/edit' element={<OrdersForm/>}/>
-            <Route path='/edit/:orderId' element={<OrdersForm/>}/>
-
-            <Route path='/*' element={<NotFound/>}/>
-
-        </Routes>
+            <Routes>
+                <Route path='/list' element={<OrdersList/>}/>
+                <Route path='/edit' element={<OrdersForm/>}/>
+                <Route path='/edit/:orderId' element={<OrdersForm/>}/>
+                <Route path='/*' element={<NotFound/>}/>
+            </Routes>
         </>
     )
 }

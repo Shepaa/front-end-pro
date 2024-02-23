@@ -60,6 +60,5 @@ export function WaiterForm() {
 
 function SaveButton() {
     const {isValid} = useFormikContext()
-
     return <button disabled={!isValid} type="submit">Save</button>
 }

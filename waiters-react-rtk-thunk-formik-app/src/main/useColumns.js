@@ -3,7 +3,7 @@ import {Button, Space} from "antd";
 import {actionRemoveItem} from "./store/thunk";
 import {editItem} from "./store/reducer";
 
-export function useColumns() {
+export function useColumns(){
     const dispatch = useDispatch()
 
     return [
